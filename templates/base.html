@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My app - {% block title %}{% endblock %}</title>
+    <title>Gemini Based Chatbot</title>
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='main.css') }}"
     />
 </head>
   <body>
-      <main>{% block content %}{% endblock %}</main>
+      <p>This is where you can{% block description %}{% endblock %}</p>
+      <p>{% block response %}{% endblock %}</p>
+      <button ><a class="{% block linkclass %}{% endblock %}" href='{% block link %}{% endblock %}'>{% block linktext %}{% endblock %}</a></button>
   </body>
 </html>

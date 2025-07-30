@@ -2,3 +2,23 @@
   font-family: sans-serif;
   font-size: larger;
 }
+
+.to-chat:link {
+  color:red;
+  text-decoration: none;
+}
+
+.to-chat:visited {
+  color:red;
+  text-decoration: none;
+}
+
+.to-chat:hover {
+  color:green;
+  text-decoration: none;
+}
+
+.to-chat:active {
+  color:blue;
+  text-decoration: none;
+}

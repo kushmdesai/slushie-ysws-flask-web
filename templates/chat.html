@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+
+{% block description %}
+chat with the bot
+{% endblock %}
+
+{% block response %}
+Gemini Responds with: {{ chatresponse }}
+{% endblock %}
+
+{% block link %}
+get new response
+{% endblock %}
+
+{% block linktext %}
+refresh (doesn't work) 
+{% endblock %}
+
+{% block linkclass %}
+to-ai
+{% endblock %}
+
+{% if response %}
+  <p class="bot-reply">{{ response }}</p>
+{% endif %}
