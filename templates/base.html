@@ -13,6 +13,6 @@
         <p>{% block response %}{% endblock %}</p>
       </div>
       <button ><a class="{% block linkclass %}{% endblock %}" href='{% block link %}{% endblock %}'>{% block linktext %}{% endblock %}</a></button>
-      <button><a href="/about">Learn more about this Website and how it works</a></button>
+      <button><a href="{% block secondarylink %}{% endblock %}">{%block secondarytext%}{% endblock %}</a></button>
   </body>
 </html>

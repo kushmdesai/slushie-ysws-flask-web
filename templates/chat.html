@@ -21,7 +21,20 @@ Home Page
   <button type="submit">Send</button>
 </form>
 
-{% if chatresponse %}
-  <p class="bot-reply">Gemini Responds: {{ chatresponse }}</p>
-{% endif %}
+<div class="chat-history">
+    {% for message in history[1:] %}
+        {% if message.role == "user" %}
+            <p class="user-msg"><strong>You: </strong>{{ message.text }}</p>
+        {% else %}
+            <p class="bot-reply"><strong>Gemini: </strong>{{ message.text }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block secondarylink%}
+/about
+{% endblock %}
+{% block secondarytext%}
+Learn more about how this website and how it works
 {% endblock %}

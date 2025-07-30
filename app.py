@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, stream_with_context, Response
+from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -11,6 +11,7 @@ load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client()
 app = Flask(__name__)
+app.secret_key = "to-be-changed"
 
 @app.route("/")
 def index():
@@ -18,23 +19,24 @@ def index():
 
 @app.route('/chat', methods=["GET","POST"])
 def chat():
+    if 'history' not in session:
+        session['history'] = []
     user_input = request.form.get('user_input')
 
     if not user_input or user_input.strip() == "":
-        user_input = "Start the conversation/ say hi"
+        user_input = "Start the conversation/ Hi"
 
-    def generate():
-        response = client.models.generate_content_stream(
-            model='gemini-2.5-flash',
-            contents=[user_input],
-            config=types.GenerateContentConfig(
-                system_instruction=sys_config
-            )
+    session['history'].append({"role": "user", "text": user_input})
+    response = client.models.generate_content(
+        model='gemini-2.5-flash',
+        contents=[user_input],
+        config=types.GenerateContentConfig(
+            system_instruction=sys_config
         )
-        for chunk in response:
-                yield chunk.text
-    chatresponse = "".join(generate())
-    return render_template('chat.html',chatresponse=chatresponse)
+    )
+    session['history'].append({"role":"gemini", "text":response.text})
+    session.modified = True
+    return render_template('chat.html', history=session['history'])
 @app.route('/about')
 def about():
     return render_template('about.html')
