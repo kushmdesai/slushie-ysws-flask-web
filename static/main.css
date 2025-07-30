@@ -3,22 +3,22 @@
   font-size: larger;
 }
 
-.to-chat:link {
+a:link {
   color:red;
   text-decoration: none;
 }
 
-.to-chat:visited {
+a:visited {
   color:red;
   text-decoration: none;
 }
 
-.to-chat:hover {
+a:hover {
   color:green;
   text-decoration: none;
 }
 
-.to-chat:active {
+a:active {
   color:blue;
   text-decoration: none;
 }

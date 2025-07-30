@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, stream_with_context, Response
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -14,23 +14,29 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    user_name = 'kcoder'
     return render_template('index.html')
 
-@app.route('/chat')
+@app.route('/chat', methods=["GET","POST"])
 def chat():
-    user_input = request.form['user_input']
+    user_input = request.form.get('user_input')
 
-    response = client.models.generate_content(
-        model='gemini-2.5-flash',
-        contents=[user_input],
-        config=types.GenerateContentConfig(
-            system_instruction=sys_config
+    if not user_input or user_input.strip() == "":
+        user_input = "Start the conversation/ say hi"
+
+    def generate():
+        response = client.models.generate_content_stream(
+            model='gemini-2.5-flash',
+            contents=[user_input],
+            config=types.GenerateContentConfig(
+                system_instruction=sys_config
+            )
         )
-    )
+        for chunk in response:
+                yield chunk.text
+    chatresponse = "".join(generate())
+    return render_template('chat.html',chatresponse=chatresponse)
 @app.route('/about')
 def about():
-    user_name = "about"
     return render_template('about.html')
 
 if __name__ == "__main__":

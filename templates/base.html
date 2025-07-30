@@ -9,7 +9,10 @@
 </head>
   <body>
       <p>This is where you can{% block description %}{% endblock %}</p>
-      <p>{% block response %}{% endblock %}</p>
+      <div class="container">
+        <p>{% block response %}{% endblock %}</p>
+      </div>
       <button ><a class="{% block linkclass %}{% endblock %}" href='{% block link %}{% endblock %}'>{% block linktext %}{% endblock %}</a></button>
+      <button><a href="/about">Learn more about this Website and how it works</a></button>
   </body>
 </html>

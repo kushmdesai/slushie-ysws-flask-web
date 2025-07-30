@@ -6,22 +6,22 @@
 chat with the bot
 {% endblock %}
 
-{% block response %}
-Gemini Responds with: {{ chatresponse }}
-{% endblock %}
 
 {% block link %}
-get new response
+/
 {% endblock %}
 
 {% block linktext %}
-refresh (doesn't work) 
+Home Page
 {% endblock %}
 
-{% block linkclass %}
-to-ai
-{% endblock %}
+{% block response %}
+<form method="POST" action="/chat">
+  <input type="text" name="user_input" placeholder="Type your question..." required>
+  <button type="submit">Send</button>
+</form>
 
-{% if response %}
-  <p class="bot-reply">{{ response }}</p>
+{% if chatresponse %}
+  <p class="bot-reply">Gemini Responds: {{ chatresponse }}</p>
 {% endif %}
+{% endblock %}
