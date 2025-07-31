@@ -10,13 +10,18 @@
   <body>
     <div class="head">
       <h1>This is where you can{% block description %}{% endblock %}</h1>
-      <img
-        class="slushie-gif"
-        src="{{ url_for('static', filename='slush-slushie.gif') }}"
-        alt="green slushie"
-      />
+      <a
+        href="https://tenor.com/view/slush-slushie-mintmango-mint-mango-gif-26685163"
+      >
+        <img
+          class="slushie-gif"
+          src="{{ url_for('static', filename='slush-slushie.gif') }}"
+          alt="green slushie"
+        />
+      </a>
     </div>
-    <div class="container">{% block response %}{% endblock %}</div>
+    <div class="text"><h3>{% block text%}{% endblock %}</h3></div>
+    {% block response %}{% endblock %}
     <form method="POST" action="/chat">
       <input
         type="text"
