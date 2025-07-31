@@ -22,3 +22,7 @@ a:active {
   color:blue;
   text-decoration: none;
 }
+
+container {
+  background-color: rgb(35, 34, 34);
+}

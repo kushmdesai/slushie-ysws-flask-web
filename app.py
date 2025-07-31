@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-import os
+import os, uuid
 
 with open("./sys-config-etc/system_configuration.txt") as f:
     sys_config = f.read()
@@ -11,7 +11,8 @@ load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client()
 app = Flask(__name__)
-app.secret_key = "to-be-changed"
+key =str(uuid.uuid4()) 
+app.secret_key = key
 
 @app.route("/")
 def index():
@@ -25,8 +26,8 @@ def chat():
 
     if not user_input or user_input.strip() == "":
         user_input = "Start the conversation/ Hi"
-
-    session['history'].append({"role": "user", "text": user_input})
+    else:
+        session['history'].append({"role": "user", "text": user_input})
     response = client.models.generate_content(
         model='gemini-2.5-flash',
         contents=[user_input],
