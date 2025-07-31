@@ -20,5 +20,7 @@ Back to Home Page
 {% endblock %}
 
 {% block text %}
-
+<p class="bot-reply"><strong>SlushBot: </strong> Slushbot is a sentient Slushy. If you are wondering how it works, then you have come to the right place. First, when you open the page, the AI welcomes you with a message. Then the real fun begins when you type in a message. It sends a JSON request to the Gemini API, and then the reply from the api is printed on the website. Then it adds it to the bottom of the questions asked ever since the code was live! The real magic is really from the sys-config-etc file. This file contains the system configuration for Gemini. This is what tells Gemini how to act and behave. You can often insert a variable into this to modify its behavior, but in my system configuration file, it just tells Gemini to act like a sentient slushy. </p>
+<p class="user-msg"><strong>User: </strong> Where can I see the code!</p>
+<p class="bot-reply"><strong>SlushBot: </strong> You can visit the code on github <a target="_blank" href="https://www.github.com/kushmdesai/">HERE!</a></p>
 {% endblock %}

@@ -20,8 +20,8 @@
         />
       </a>
     </div>
-    <div class="text"><h3>{% block text%}{% endblock %}</h3></div>
-    {% block response %}{% endblock %}
+    <div class="text">{% block text%}{% endblock %}</div>
+    <div class="container">{% block response %}{% endblock %}</div>
     <form method="POST" action="/chat">
       <input
         type="text"

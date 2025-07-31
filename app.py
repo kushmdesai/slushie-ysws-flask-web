@@ -20,8 +20,6 @@ def index():
 
 @app.route('/chat', methods=["GET","POST"])
 def chat():
-    key =str(uuid.uuid4()) 
-    app.secret_key = key
     if 'history' not in session:
         session['history'] = []
     user_input = request.form.get('user_input')
@@ -38,7 +36,7 @@ def chat():
         )
     )
     session['history'].append({"role":"gemini", "text":response.text})
-    session.modified = True
+    session.modified = True 
     return render_template('chat.html', history=session['history'])
 @app.route('/about')
 def about():
