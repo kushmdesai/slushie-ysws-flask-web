@@ -20,6 +20,8 @@ def index():
 
 @app.route('/chat', methods=["GET","POST"])
 def chat():
+    key =str(uuid.uuid4()) 
+    app.secret_key = key
     if 'history' not in session:
         session['history'] = []
     user_input = request.form.get('user_input')

@@ -6,9 +6,11 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='main.css') }}"
     />
+    
 </head>
   <body>
       <p>This is where you can{% block description %}{% endblock %}</p>
+      <img class="slushie-gif" src="{{ url_for('static', filename='slush-slushie.gif') }}" alt="green slushie">
       <div class="container">
         <p>{% block response %}{% endblock %}</p>
       </div>
