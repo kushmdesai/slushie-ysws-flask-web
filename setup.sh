@@ -33,4 +33,4 @@ pip install -r requirements.txt
 
 # Start the Flask app using Gunicorn on the specified port
 echo "✅ Installing done. Starting gunicorn..."
-exec gunicorn -b ":$PORT" app:app --access-logfile - --error-logfile -
+gunicorn -w 1 -b 0.0.0.0:$1 app:app > gunicorn.log 2>&1 &
