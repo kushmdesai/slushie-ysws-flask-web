@@ -44,10 +44,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # --- Start the Flask App with Gunicorn ---
-# Use 'nohup' to run Gunicorn in the background and log output.
-# The '&' at the end detaches the process from the terminal.
+# This command runs Gunicorn in the foreground so you can see any
+# errors directly in your terminal. You can press Ctrl+C to stop it.
 echo "✅ Installation done. Starting gunicorn..."
-nohup gunicorn -w 1 -b 0.0.0.0:$1 app:app --log-level debug > gunicorn.log 2>&1 &
-
-echo "Gunicorn has been started in the background. Check gunicorn.log for output."
-echo "You can view running processes with: ps aux | grep gunicorn"
+gunicorn -w 1 -b 0.0.0.0:$1 app:app --log-level debug
