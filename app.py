@@ -9,7 +9,9 @@ with open("./sys-config-etc/system_configuration.txt") as f:
 
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
+print(API_KEY)
 port = int(os.environ.get('FLASK_PORT', 3000))
+print(port)
 client = genai.Client()
 app = Flask(__name__)
 key =str(uuid.uuid4()) 
