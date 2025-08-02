@@ -9,6 +9,7 @@ with open("./sys-config-etc/system_configuration.txt") as f:
 
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
+port = int(os.environ.get('FLASK_PORT', 3000))
 client = genai.Client()
 app = Flask(__name__)
 key =str(uuid.uuid4()) 
@@ -43,4 +44,4 @@ def about():
     return render_template('about.html')
 
 if __name__ == "__main__":
-    app.run(port=5000, debug = True)
+    app.run(port=port, debug = True)
