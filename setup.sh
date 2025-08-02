@@ -32,4 +32,4 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Start the Flask app using Gunicorn on the specified port
-gunicorn -b ":$PORT" app:app
+exec gunicorn -b ":$PORT" app:app
